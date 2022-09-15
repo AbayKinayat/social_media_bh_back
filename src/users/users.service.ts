@@ -13,14 +13,7 @@ export class UsersService {
   ) { }
 
   async createUser(userDto: CreateUserDto): Promise<Users> {
-    const user = await this.userRepository.create(userDto, {
-      include: [
-        {
-          model: this.sexRepository,
-          as: "sex"
-        }
-      ]
-    });
+    const user = await this.userRepository.create(userDto);
     return user;
   }
 

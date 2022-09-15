@@ -16,9 +16,6 @@ export class CreateUserDto {
   @IsString({ message: "Фамилмя должно быть строкой" })
   readonly lastName: string
 
-  @ApiProperty({ example: "1", description: "Идентификато пола" })
-  readonly sexId: number
-
   @ApiProperty({ example: "qwerty1234", description: "Пароль" })
   @IsString({ message: "Пароль должен быть строкой" })
   @Length(8, 16, { message: "Пароль должен быть минимум 8 символов и миксимим 16 символов" })

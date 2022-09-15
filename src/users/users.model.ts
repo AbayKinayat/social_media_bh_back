@@ -46,7 +46,7 @@ export class Users extends Model<Users, UserCreationAttrs> {
 
   @ApiProperty({ example: "1", description: "Идентификатор пола пользователя" })
   @ForeignKey(() => Sex)
-  @Column({ type: DataType.INTEGER, allowNull: false })
+  @Column({ type: DataType.INTEGER, allowNull: true })
   sexId: number
 
   @ApiProperty({ example: "Мужской", description: "Пол пользователя", required: false })
