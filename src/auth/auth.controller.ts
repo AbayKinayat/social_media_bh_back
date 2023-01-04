@@ -19,7 +19,7 @@ export class AuthController {
   async localLogin(@Body() userDto: AuthUserDto, @Res() res: Response) {
     console.log(userDto)
     const userData = await this.authService.localLogin(userDto);
-    res.cookie("refreshToken", userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
+    res.cookie("refreshToken", userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true, secure: false });
 
     res.status(200).json(userData);
   }
@@ -53,9 +53,9 @@ export class AuthController {
   @UseGuards(AuthGuard('jwt-refresh'))
   async refresh(@Res() res: Response, @Req() req: Request) {
     const { refreshToken } = req.cookies;
-    console.log(refreshToken)
+    console.log("refreshToken", refreshToken)
     const userData = await this.authService.refresh(refreshToken);
-    res.cookie("refreshToken", userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true, secure: true });
+    res.cookie("refreshToken", userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
 
     return res.json(userData);
   }

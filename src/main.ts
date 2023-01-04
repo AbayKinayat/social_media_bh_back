@@ -6,11 +6,12 @@ import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const PORT = process.env.PORT || 3333;
-  const app = await NestFactory.create(AppModule, { 
+  const app = await NestFactory.create(AppModule, {
     cors: {
       origin: "http://localhost:3000",
+      credentials: true
     }
-   });
+  });
 
   app.useGlobalPipes(new ValidationPipe());
   app.use(cookieParser());

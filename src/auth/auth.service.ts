@@ -80,7 +80,8 @@ export class AuthService {
 
     const userData = this.validateRefreshToken(refreshToken);
     const tokenFromDb = await this.tokensRepository.findOne({ where: { refreshToken } });
-    if (!tokenFromDb && !userData) {
+    console.log("tokenFromDb", tokenFromDb)
+    if (!tokenFromDb || !userData) {
       throw new UnauthorizedException("Пользователь не авторизован");
     }
 
@@ -93,7 +94,7 @@ export class AuthService {
 
     return {
       accessToken,
-      refreshToken,
+      refreshToken: rt,
       user: userFromDto
     }
   }
@@ -124,6 +125,7 @@ export class AuthService {
   }
 
   async saveToken(userId: number, refreshToken: string) {
+    console.log("userId", userId);
     const tokenData = await this.tokensRepository.findOne({ where: { userId } });
     if (tokenData) {
       tokenData.refreshToken = refreshToken;
