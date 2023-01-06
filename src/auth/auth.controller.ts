@@ -53,7 +53,6 @@ export class AuthController {
   @UseGuards(AuthGuard('jwt-refresh'))
   async refresh(@Res() res: Response, @Req() req: Request) {
     const { refreshToken } = req.cookies;
-    console.log("refreshToken", refreshToken)
     const userData = await this.authService.refresh(refreshToken);
     res.cookie("refreshToken", userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
 
