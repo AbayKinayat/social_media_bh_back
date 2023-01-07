@@ -22,6 +22,8 @@ import { UsersLikesPosts } from './posts/userLikesPosts.model';
 import { UsersLikesImages } from './users/usersLikesImages.model';
 import { UsersFriends } from './users/usersFriends.model';
 import { UsersFollowers } from './users/usersFollowers.model';
+import { PostsImagesModule } from './posts-images/posts-images.module';
+import { PostsImages } from './posts-images/posts-images.model';
 
 let envFilePath = ".development.env";
 
@@ -57,7 +59,8 @@ console.log(envFilePath)
         UsersLikesImages,
         UsersImages,
         UsersFriends,
-        UsersFollowers
+        UsersFollowers,
+        PostsImages
       ],
       autoLoadModels: true,
       synchronize: true
@@ -68,6 +71,7 @@ console.log(envFilePath)
     LangsModule,
     PostsModule,
     TagsModule,
+    PostsImagesModule,
   ]
 })
 export class AppModule { }

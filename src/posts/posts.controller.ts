@@ -1,6 +1,6 @@
 import { UserDto } from 'src/users/dto/user-dto';
 import { PostsService } from './posts.service';
-import { Controller, Get, Query, UseGuards, Request } from '@nestjs/common';
+import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import QueryDefaultDto from 'src/shared/dto/query-default.dto';
 import { PostDto } from './dto/post.dto';

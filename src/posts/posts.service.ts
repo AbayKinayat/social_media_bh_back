@@ -1,3 +1,4 @@
+import { PostsImages } from 'src/posts-images/posts-images.model';
 import { PaginationService, type IPaginationData } from './../shared/services/pagination.service';
 import QueryDefaultDto from 'src/shared/dto/query-default.dto';
 import { Injectable } from '@nestjs/common';
@@ -15,6 +16,7 @@ export class PostsService {
     @InjectModel(Posts) private postsRepository: typeof Posts,
     @InjectModel(Users) private usersRepository: typeof Users,
     @InjectModel(Tags) private tagsRepository: typeof Tags,
+    @InjectModel(PostsImages) private postsImagesRepository: typeof PostsImages,
     private paginationService: PaginationService
   ) { }
 
@@ -60,11 +62,15 @@ export class PostsService {
       where: { [key: string]: any },
       limit: number,
       offset: number,
-      order?: [string, string][]
+      order?: [string, string][],
+      include: any
     } = {
       where: {},
       limit,
-      offset
+      offset,
+      include: {
+        all: true
+      }
     };
 
     for (const key in query.filter) {

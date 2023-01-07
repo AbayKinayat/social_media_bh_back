@@ -1,5 +1,6 @@
+import { PostsImages } from './../posts-images/posts-images.model';
 import { ApiProperty } from "@nestjs/swagger";
-import { BelongsTo, BelongsToMany, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import { BelongsTo, BelongsToMany, Column, DataType, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
 import { Tags } from "src/tags/tags.model";
 import { Users } from "src/users/users.model";
 import { UsersLikesPosts } from "./userLikesPosts.model";
@@ -44,4 +45,7 @@ export class Posts extends Model<Posts> {
   @ApiProperty({ description: "Пользователи которые лайкнули пост" })
   @BelongsToMany(() => Users, () => UsersLikesPosts)
   usersWhenLikes: Users[]
+
+  @HasMany(() => PostsImages, "postId")
+  images: PostsImages[]
 }
