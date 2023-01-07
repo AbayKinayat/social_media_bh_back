@@ -1,10 +1,10 @@
+import { RefreshTokenGuard } from './../guards/refresh-token.guard';
 import { ApiOperation, ApiTags, ApiResponse } from '@nestjs/swagger';
 import { CreateUserDto } from './../users/dto/create-user.dto';
 import { Body, Controller, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { Request, Response } from 'express';
 import { AuthUserDto } from 'src/users/dto/login-user.dto';
-import { AuthGuard } from '@nestjs/passport';
 import { AuthResDto } from 'src/users/dto/auth-res-user.dto';
 
 @ApiTags("Авторизация")
@@ -50,7 +50,7 @@ export class AuthController {
   @Post('refresh')
   @ApiOperation({ summary: "Обновить токен и получить пользователя", description: "Есть проверка токена. В базе обновляет токен и также в куки" })
   @ApiResponse({ status: 200, type: AuthResDto })
-  @UseGuards(AuthGuard('jwt-refresh'))
+  @UseGuards(RefreshTokenGuard)
   async refresh(@Res() res: Response, @Req() req: Request) {
     const { refreshToken } = req.cookies;
     const userData = await this.authService.refresh(refreshToken);

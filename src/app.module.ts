@@ -1,3 +1,4 @@
+import { PaginationService } from './shared/services/pagination.service';
 import { UsersImages } from './users/usersImages.model';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
@@ -67,6 +68,6 @@ console.log(envFilePath)
     LangsModule,
     PostsModule,
     TagsModule,
-  ],
+  ]
 })
 export class AppModule { }

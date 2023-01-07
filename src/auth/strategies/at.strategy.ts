@@ -1,3 +1,4 @@
+import { UserDto } from 'src/users/dto/user-dto';
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
@@ -11,7 +12,7 @@ export class AtStratagy extends PassportStrategy(Strategy, 'jwt') {
     })
   }
 
-  validate(payload: any) {
+  validate(payload: UserDto) {
     return payload;
   }
 }

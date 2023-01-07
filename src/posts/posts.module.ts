@@ -1,3 +1,4 @@
+import { PaginationService } from './../shared/services/pagination.service';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Module } from '@nestjs/common';
 import { Sequelize } from 'sequelize/types';
@@ -9,7 +10,7 @@ import { Tags } from 'src/tags/tags.model';
 
 @Module({
   controllers: [PostsController],
-  providers: [PostsService],
+  providers: [PostsService, PaginationService],
   imports: [
     SequelizeModule.forFeature([
       Users,
